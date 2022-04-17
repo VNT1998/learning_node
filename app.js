@@ -16,7 +16,16 @@ const server = http.createServer((req, res) => {
     return res.end(); //To exit the process and not continue with the further execution
   }
   if (reqUrl === "/message" && reqMethod === "POST") {
-    fs.writeFileSync("message.txt", "Some dummy text");
+    const body = [];
+    req.on("data", (chunk) => {
+      console.log(chunk);
+      body.push(chunk);
+    });
+    req.on("end", () => {
+      const parsedBody = Buffer.concat(body).toString();
+      const message = parsedBody.split("=")[1];
+      fs.writeFileSync("message.txt", message);
+    });
     res.statusCode = 302;
     res.setHeader("Location", "/");
     return res.end();
