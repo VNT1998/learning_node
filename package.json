@@ -1,0 +1,25 @@
+{
+  "name": "learing_node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "start-server": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VNT1998/learning_node.git"
+  },
+  "author": "Vinit Karkera",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VNT1998/learning_node/issues"
+  },
+  "homepage": "https://github.com/VNT1998/learning_node#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
