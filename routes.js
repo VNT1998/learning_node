@@ -41,5 +41,5 @@ const requestHandler = (req, res) => {
 
 //Offered only by nodeJS
 exports.handler=requestHandler;
-exports.someText="Hi";
+exports.someText="Vinit";
 
