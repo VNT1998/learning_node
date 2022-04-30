@@ -18,7 +18,9 @@
     "url": "https://github.com/VNT1998/learning_node/issues"
   },
   "homepage": "https://github.com/VNT1998/learning_node#readme",
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.18.1"
+  },
   "devDependencies": {
     "nodemon": "^2.0.15"
   }
