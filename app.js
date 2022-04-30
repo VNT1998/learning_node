@@ -10,9 +10,9 @@ app.use((req, res, next) => {
 
 app.use((req, res, next) => {
   console.log("This is another a middleware");
-  res.send('<h1>Hello World</h1>');
+  res.send("<h1>Hello World</h1>");
 });
 // function rqListner(req, res)
 // http.createServer(rqListner);
-const server = http.createServer(app);
-server.listen(3000);
+// const server = http.createServer(app);
+app.listen(3000);
