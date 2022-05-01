@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/VNT1998/learning_node#readme",
   "dependencies": {
+    "body-parser": "^1.20.0",
     "express": "^4.18.1"
   },
   "devDependencies": {
