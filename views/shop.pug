@@ -16,8 +16,8 @@ html(lang="en")
                     li.main-header__item
                         a(href="/admin/add-products") Add Product
         main 
-            h1 My Products
             if prods.length > 0 
+                h1 My Products
                 .grid
                 each product in prods
                     article.card.product-item
