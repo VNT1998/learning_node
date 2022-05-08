@@ -20,7 +20,10 @@
   "homepage": "https://github.com/VNT1998/learning_node#readme",
   "dependencies": {
     "body-parser": "^1.20.0",
-    "express": "^4.18.1"
+    "ejs": "^3.1.7",
+    "express": "^4.18.1",
+    "express-handlebars": "^6.0.5",
+    "pug": "^3.0.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
