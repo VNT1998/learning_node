@@ -7,7 +7,7 @@ const products = [];
 
 router.get("/add-products", (req, res, next) => {
   console.log("This is another a middleware");
-  res.render("add-product", {docTitle: "Add Product"});
+  res.render("add-product", {docTitle: "Add Product", path:"/admin/add-products"});
 });
 
 router.post("/product", (req, res, next) => {
