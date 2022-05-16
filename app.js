@@ -6,16 +6,8 @@ const app = express();
 const bodyParser = require("body-parser");
 const adminData = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
-const expressHbs = require("express-handlebars");
 
-app.engine(
-  "hbs",
-  expressHbs.engine({
-    extname: "hbs",
-    layoutsDir: path.join(__dirname, "views"),
-  })
-);
-app.set("view engine", "hbs");
+app.set("view engine", "ejs");
 app.set("views", "./views");
 // app.set('view options', { layout: 'other' });
 
@@ -30,7 +22,7 @@ app.use("/admin", adminData.routes);
 app.use(shopRoutes);
 
 app.use((req, res, next) => {
-  res.status(404).render("404",{ layouts:'404' });
+  res.status(404).render("404", { layouts: "404", docTitle: "Page Not Found" });
 });
 // function rqListner(req, res)
 // http.createServer(rqListner);
