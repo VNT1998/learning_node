@@ -6,9 +6,18 @@ const app = express();
 const bodyParser = require("body-parser");
 const adminData = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
+const expressHbs = require("express-handlebars");
 
-app.set("view engine", "pug");
+app.engine(
+  "hbs",
+  expressHbs.engine({
+    extname: "hbs",
+    layoutsDir: path.join(__dirname, "views"),
+  })
+);
+app.set("view engine", "hbs");
 app.set("views", "./views");
+// app.set('view options', { layout: 'other' });
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
@@ -21,7 +30,7 @@ app.use("/admin", adminData.routes);
 app.use(shopRoutes);
 
 app.use((req, res, next) => {
-  res.status(404).render("404");
+  res.status(404).render("404",{ layouts:'404' });
 });
 // function rqListner(req, res)
 // http.createServer(rqListner);
