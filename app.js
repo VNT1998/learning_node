@@ -1,11 +1,11 @@
 // will add the core module ,you can also add your own js file by using \http or .\http, no need to add .js extension
 const path = require("path");
-const http = require("http");
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const adminData = require("./routes/admin");
+const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
+const errorsController = require("./controllers/errors");
 
 app.set("view engine", "ejs");
 app.set("views", "./views");
@@ -18,12 +18,10 @@ app.use("/", (req, res, next) => {
   next();
 });
 
-app.use("/admin", adminData.routes);
+app.use("/admin", adminRoutes);
 app.use(shopRoutes);
 
-app.use((req, res, next) => {
-  res.status(404).render("404", { layouts: "404", docTitle: "Page Not Found" });
-});
+app.use(errorsController.get404);
 // function rqListner(req, res)
 // http.createServer(rqListner);
 // const server = http.createServer(app);
