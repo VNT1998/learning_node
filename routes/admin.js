@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 const adminController = require("../controllers/admin");
 
-router.get("/add-products", adminController.getAddProduct);
+router.get("/add-product", adminController.getAddProduct);
 
-router.post("/add-products", adminController.postAddProduct);
+router.post("/add-product", adminController.postAddProduct);
 router.get("/products", adminController.getProducts);
 
 

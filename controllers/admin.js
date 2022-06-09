@@ -4,7 +4,7 @@ exports.getAddProduct = (req, res, next) => {
     console.log("This is another a middleware");
     res.render("admin/add-product", {
         docTitle: "Add Product",
-        path: "/admin/add-products",
+        path: "/admin/add-product",
         formsCSS: true,
         productCSS: true,
         activeAddProduct: true,
