@@ -40,12 +40,19 @@ exports.getEditProduct = (req, res, next) => {
 
 exports.postEditProduct = (req, res, next) => {
     const id = req.body.id;
-    const title = req.body.title;
-    const imageUrl = req.body.imageUrl;
-    const price = req.body.price;
-    const description = req.body.description;
-    const product = new productModel(id, title, imageUrl, description, price);
+    productModel.findById(prodId, product => {
+        if (!product) {
+            return res.redirect("/admin/products");
+        }
+
+    });
     product.save();
+    res.redirect("/admin/products");
+};
+
+exports.postDeleteProduct = (req, res, next) => {
+    const id = req.body.id;
+    productModel.deleteById(id);
     res.redirect("/admin/products");
 };
 

@@ -6,6 +6,17 @@ const p = path.join(
     "cart.json"
 );
 
+getCartProductsFromFile = cb => {
+    fs.readFile(p, (err, fileContent) => {
+        if (!err) {
+            console.log(JSON.parse(fileContent));
+            cb(JSON.parse(fileContent));
+        } else {
+            console.log(err);
+            cb(null);
+        }
+    });
+}
 module.exports = class Cart {
     static addProduct(id, productPrice) {
         fs.readFile(p, (err, fileContent) => {
@@ -30,5 +41,36 @@ module.exports = class Cart {
                 console.log(err);
             })
         });
+    }
+    static deleteProduct(id, productPrice, isProductDeletedFromAdmin) {
+        fs.readFile(p, (err, fileContent) => {
+            if (err) {
+                return;
+            }
+            const updatedCart = { ...JSON.parse(fileContent) };
+            const product = updatedCart.products.find(product => product.id === id);
+            const productIndex = updatedCart.products.findIndex(product => product.id === id);
+            if (!product) {
+                return;
+            }
+            const productQty = product.quantity;
+            if (isProductDeletedFromAdmin) {
+                updatedCart.products = updatedCart.products.filter(product => product.id !== id);
+                updatedCart.totalPrice = updatedCart.totalPrice - productPrice * productQty;
+            } else {
+                updatedCart.products = updatedCart.products.filter(product => product.id !== id);
+                if (productQty > 1) {
+                    product.quantity--;
+                    updatedCart.products.splice(productIndex, 0, product);
+                }
+                updatedCart.totalPrice = updatedCart.totalPrice - productPrice;
+            }
+            fs.writeFile(p, JSON.stringify(updatedCart), err => {
+                console.log(err);
+            })
+        });
+    }
+    static fetchAll(cb) {
+        getCartProductsFromFile(cb);
     }
 }
