@@ -6,11 +6,13 @@ const bodyParser = require("body-parser");
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
 const errorsController = require("./controllers/errors");
+const db = require("./utils/database");
 
 app.set("view engine", "ejs");
 app.set("views", "./views");
 // app.set('view options', { layout: 'other' });
-
+// db.execute('SELECT * FROM products').then(result => { console.log(result[0]) }).catch(err => { console.log(err) });
+// ;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/", (req, res, next) => {
