@@ -1,7 +1,6 @@
 const productModel = require('../models/product');
 
 exports.getAddProduct = (req, res, next) => {
-    // console.log("This is another a middleware");
     res.render("admin/edit-product", {
         docTitle: "Add Product",
         path: "/admin/add-product",
@@ -10,13 +9,19 @@ exports.getAddProduct = (req, res, next) => {
 };
 
 exports.postAddProduct = (req, res, next) => {
-    // const id =  Math.floor(Math.random() * 9999);
     const title = req.body.title;
     const imageUrl = req.body.imageUrl;
     const price = req.body.price;
     const description = req.body.description;
-    const product = new productModel(null, title, imageUrl, description, price);
-    product.save().then(() => { res.redirect("/"); }).catch(err => { console.log(err) });
+    productModel.create({
+        title: title,
+        description: description,
+        imageUrl: imageUrl,
+        price: price,
+    }).then(result => { console.log(result) }).catch(err => {
+        console.log(err
+        )
+    })
 };
 
 exports.getEditProduct = (req, res, next) => {
@@ -57,11 +62,11 @@ exports.postDeleteProduct = (req, res, next) => {
 };
 
 exports.getProducts = (req, res, next) => {
-    productModel.fetchAll().then(([rows, fieldData]) => {
+    productModel.findAll().then((products) => {
         res.render("admin/products", {
-            prods: rows,
+            prods: products,
             docTitle: "Admin Products",
             path: "/admin/products",
         });
-    }).catch(err => { });
+    }).catch(err => { console.log(err) });
 }

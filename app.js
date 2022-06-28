@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
 const errorsController = require("./controllers/errors");
-const db = require("./utils/database");
+const sequelize = require("./utils/database");
 
 app.set("view engine", "ejs");
 app.set("views", "./views");
@@ -27,4 +27,9 @@ app.use(errorsController.get404);
 // function rqListner(req, res)
 // http.createServer(rqListner);
 // const server = http.createServer(app);
-app.listen(3000);
+
+sequelize.sync().then(result => {
+  // console.log(result);
+  app.listen(3000);
+}).catch(err => { console.log(err); });
+
